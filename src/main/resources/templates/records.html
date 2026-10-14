@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>作業記録一覧｜FarmView</title>
 </head>
 <body>
 	<h1>作業記録一覧</h1>
-	<p>ここに保存した農作業の記録を表示する予定です！！</p>
+	<table border="1">
+		<tr>
+			<th>作物</th>
+			<th>作業内容</th>
+		</tr>
+		
+		<tr th:each="record : ${records}">
+			<td th:text="${record.crop}">作物名</td>
+			<td th:text="${record.workContent}">作業内容</td>
+		</tr>
+	</table>
 	
 	<a href="/">ホームに戻る</a>
 </body>

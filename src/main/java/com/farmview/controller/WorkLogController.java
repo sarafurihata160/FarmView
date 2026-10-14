@@ -1,10 +1,12 @@
 package com.farmview.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.farmview.service.WorkLogService;
 
+@Controller
 public class WorkLogController {
 	
 	private final WorkLogService service;

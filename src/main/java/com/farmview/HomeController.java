@@ -20,10 +20,6 @@ public class HomeController {
 	public String weather() {
 		return "weather";
 	}
-	@GetMapping("/records")
-	public String records() {
-		return "records";
-	}
 	@GetMapping("/records/new")
 	public String recordForm() {
 		return "record-form";

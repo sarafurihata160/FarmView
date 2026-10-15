@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>作業記録編集｜FarmView</title>
+</head>
+<body>
+	<h1>作業記録編集</h1>
+	
+	<form>
+		<p>
+			作業日：
+			<input type="date" name="workDate" 
+					th:value="${record.workDate}">
+		</p>
+		<p>
+			作物：
+			<input type="text" name="crop"
+					th:value="${record.crop}">
+		</p>
+		<p>
+			作業内容：
+			<input type="text" name="workContent"
+					th:value="${record.workContent}">
+		</p>
+		<p>
+			圃場名：
+			<input type="text" name="fieldName"
+					th:value="${record.fieldName}">
+		</p>
+		<p>
+			メモ：
+			<textarea name="memo"
+					th:text="${record.memo}"></textarea>
+		</p>
+	</form>
+</body>
+</html>

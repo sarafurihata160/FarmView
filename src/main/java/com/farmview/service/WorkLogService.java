@@ -22,4 +22,7 @@ public class WorkLogService {
 	public List<WorkLog> findAll() {
 		return repository.findAll();
 	}
+	public WorkLog findById(Long id) {
+		return repository.findById(id).orElse(null);
+	}
 }

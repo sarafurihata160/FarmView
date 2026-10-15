@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>作業記録詳細｜FarmView</title>
+</head>
+<body>
+	<h1>	作業記録詳細</h1>
+	
+	<p>作業日：
+		<span th:text="${record.workDate}"></span>
+	</p>
+	<p>作物：
+		<span th:text="${record.crop}"></span>
+	</p>
+	<p>作業内容：
+		<span th:text="${record.workContent}"></span>
+	</p>
+	<p>圃場名：
+		<span th:text="${record.fieldName}"></span>
+	</p>	
+	<p>メモ：
+		<span th:text="${record.memo}"></span>
+	</p>	
+	
+	<p>
+		<a th:href="@{/records/{id}/edit(id=${record.id})}">
+			編集する
+		</a>
+	</p>
+	<a href="/records">一覧に戻る</a>
+</body>
+</html>

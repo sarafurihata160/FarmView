@@ -9,6 +9,7 @@
 	<p>
 		<a th:href="@{/records/new}">+ 新しい作業記録を登録</a>
 	</p>
+
 	<table border="1">
 		<tr>
 			<th>作業日</th>
@@ -16,6 +17,7 @@
 			<th>作業内容</th>
 			<th>圃場名</th>
 			<th>メモ</th>
+			<th>詳細</th>
 		</tr>
 		
 		<tr th:each="record : ${records}">
@@ -24,6 +26,11 @@
 			<td th:text="${record.workContent}">作業内容</td>
 			<td th:text="${record.fieldName}">圃場名</td>
 			<td th:text="${record.memo}">メモ</td>
+			<td>
+				<a th:href="@{/records/{id}(id=${record.id})}">
+					詳細を見る
+				</a>
+			</td>
 		</tr>
 	</table>
 	

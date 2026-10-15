@@ -6,15 +6,24 @@
 </head>
 <body>
 	<h1>作業記録一覧</h1>
+	<p>
+		<a th:href="@{/records/new}">+ 新しい作業記録を登録</a>
+	</p>
 	<table border="1">
 		<tr>
+			<th>作業日</th>
 			<th>作物</th>
 			<th>作業内容</th>
+			<th>圃場名</th>
+			<th>メモ</th>
 		</tr>
 		
 		<tr th:each="record : ${records}">
+			<td th:text="${record.workDate}">作業日</td>
 			<td th:text="${record.crop}">作物名</td>
 			<td th:text="${record.workContent}">作業内容</td>
+			<td th:text="${record.fieldName}">圃場名</td>
+			<td th:text="${record.memo}">メモ</td>
 		</tr>
 	</table>
 	

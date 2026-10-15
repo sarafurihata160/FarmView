@@ -6,8 +6,36 @@
 </head>
 <body>
 	<h1>作業記録登録</h1>
-	<p>ここに作業の記録を登録するフォームを作る予定です！！</p>
-	
+	<form action="/records" method="post">
+		
+		<p>
+			<label>作業日</label>
+			<input type="date" name="workDate" required>
+		</p>
+		
+		<p>
+			<label>作物：</label>
+			<input type="text" name="crop" required>
+		</p>
+		
+		<p>
+			<label>作業内容：</label>
+			<input type="text" name="workContent" required>
+		</p>
+		
+		<p>
+			<label>圃場名：</label>
+			<input type="text" name="fieldName">
+		</p>
+		
+		<p>
+			<label>メモ：</label>
+			<textarea name="memo"></textarea>
+		</p>
+		
+		<button type="submit">登録する</button>
+		
+	</form>
 	<a href="/">ホームに戻る</a>
 </body>
 </html>

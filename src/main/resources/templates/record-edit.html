@@ -7,7 +7,8 @@
 <body>
 	<h1>作業記録編集</h1>
 	
-	<form>
+	<form th:action="@{/records/{id}/edit(id=${record.id})}"
+			method="post">
 		<p>
 			作業日：
 			<input type="date" name="workDate" 
@@ -33,6 +34,7 @@
 			<textarea name="memo"
 					th:text="${record.memo}"></textarea>
 		</p>
+		<button type="submit">変更を保存</button>
 	</form>
 </body>
 </html>

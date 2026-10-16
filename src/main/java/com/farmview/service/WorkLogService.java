@@ -19,10 +19,16 @@ public class WorkLogService {
 	public void save(WorkLog workLog) {
 		repository.save(workLog);
 	}
+	
 	public List<WorkLog> findAll() {
 		return repository.findAll();
 	}
+	
 	public WorkLog findById(Long id) {
 		return repository.findById(id).orElse(null);
+	}
+	
+	public void deleteById(Long id) {
+		repository.deleteById(id);
 	}
 }

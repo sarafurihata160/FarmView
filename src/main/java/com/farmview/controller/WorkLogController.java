@@ -24,18 +24,34 @@ public class WorkLogController {
 		model.addAttribute("records", service.findAll());
 		return "records";
 	}
+	
 	@GetMapping("/records/{id}")
 	public String detail(@PathVariable Long id, Model model) {
 		WorkLog workLog = service.findById(id);
 		model.addAttribute("record", workLog);
 		return "record-detail";
 	}
+	
 	@GetMapping("/records/{id}/edit")
 	public String edit(@PathVariable Long id, Model model) {
 		WorkLog workLog = service.findById(id);
 		model.addAttribute("record", workLog);
 		return "record-edit";
 	}
+	
+	@PostMapping("/records/{id}/edit")
+	public String update(@PathVariable Long id, WorkLog workLog) {
+		workLog.setId(id);
+		service.save(workLog);
+		return "redirect:/records/" + id;
+	}
+	
+	@PostMapping("/records/{id}/delete")
+	public String delete(@PathVariable Long id) {
+		service.deleteById(id);
+		return "redirect:/records";
+	}
+	
 	@PostMapping("/records")
 	public String save(@ModelAttribute WorkLog workLog) {
 		service.save(workLog);

@@ -28,6 +28,14 @@
 			編集する
 		</a>
 	</p>
+	
+	<form th:action="@{/records/{id}/delete(id=${record.id})}"
+			method="post"
+			onsubmit="return confirm('本当にこの記録を削除しますか？');">
+		
+		<button type="submit">削除する</button>
+	</form>
+	
 	<a href="/records">一覧に戻る</a>
 </body>
 </html>

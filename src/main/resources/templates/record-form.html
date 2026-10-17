@@ -6,19 +6,29 @@
 </head>
 <body>
 	<h1>作業記録登録</h1>
-	<form action="/records" method="post">
+	<form th:action="@{/records}" method="post"
+			th:object="${workLog}">
 		
 		<p>
 			<label>作業日</label>
 			<input type="date" name="workDate" required>
+			<p th:if="${#fields.hasErrors('workDate')}"
+				th:errors="*{workDate}"
+				style="color: red;"></p>
 		</p>
 		<p>
 			<label>作物：</label>
 			<input type="text" name="crop" required>
+			<p th:if="${#fields.hasErrors('crop')}"
+				th:errors="*{crop}"
+				style="color: red;"></p>
 		</p>
 		<p>
 			<label>作業内容：</label>
 			<input type="text" name="workContent" required>
+			<p th:if="${#fields.hasErrors('workContent')}"
+				th:errors="*{workContent}"
+				style="color: red;"></p>
 		</p>
 		<p>
 			<label>圃場名：</label>

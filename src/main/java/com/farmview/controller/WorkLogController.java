@@ -1,7 +1,10 @@
 package com.farmview.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +56,14 @@ public class WorkLogController {
 	}
 	
 	@PostMapping("/records")
-	public String save(@ModelAttribute WorkLog workLog) {
+	public String save(
+			@Valid @ModelAttribute WorkLog workLog,
+			BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "record-form";
+		}
+		
 		service.save(workLog);
 		return "redirect:/records";
 	}

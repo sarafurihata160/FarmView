@@ -8,31 +8,36 @@
 	<h1>作業記録編集</h1>
 	
 	<form th:action="@{/records/{id}/edit(id=${record.id})}"
-			method="post">
+			method="post"
+			th:object="${record}">
 		<p>
 			作業日：
-			<input type="date" name="workDate" 
-					th:value="${record.workDate}">
+			<input type="date" th:field="*{workDate}" required >
+			<p th:if="${#fields.hasErrors('workDate')}"
+				th:errors="*{workDate}"
+				style="color: red;"></p>
 		</p>
 		<p>
 			作物：
-			<input type="text" name="crop"
-					th:value="${record.crop}">
+			<input type="text" th:field="*{crop}" required>
+			<p th:if="${#fields.hasErrors('crop')}"
+				th:errors="*{crop}"
+				style="color: red;"></p>
 		</p>
 		<p>
 			作業内容：
-			<input type="text" name="workContent"
-					th:value="${record.workContent}">
+			<input type="text" th:field="*{workContent}" required>
+			<p th:if="${#fields.hasErrors('workContent')}"
+				th:errors="*{workContent}"
+				style="color: red;"></p>
 		</p>
 		<p>
 			圃場名：
-			<input type="text" name="fieldName"
-					th:value="${record.fieldName}">
+			<input type="text" th:field="*{fieldName}">
 		</p>
 		<p>
 			メモ：
-			<textarea name="memo"
-					th:text="${record.memo}"></textarea>
+			<textarea th:field="*{memo}"></textarea>
 		</p>
 		<button type="submit">変更を保存</button>
 	</form>

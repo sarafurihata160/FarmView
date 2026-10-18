@@ -20,8 +20,5 @@ public class HomeController {
 	public String weather() {
 		return "weather";
 	}
-	@GetMapping("/records/new")
-	public String recordForm() {
-		return "record-form";
-	}
+
 }

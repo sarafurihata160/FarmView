@@ -28,6 +28,12 @@ public class WorkLogController {
 		return "records";
 	}
 	
+	@GetMapping("/records/new")
+	public String recordForm(Model model) {
+		model.addAttribute("workLog", new WorkLog());
+		return "record-form";
+	}
+	
 	@GetMapping("/records/{id}")
 	public String detail(@PathVariable Long id, Model model) {
 		WorkLog workLog = service.findById(id);
@@ -43,9 +49,18 @@ public class WorkLogController {
 	}
 	
 	@PostMapping("/records/{id}/edit")
-	public String update(@PathVariable Long id, WorkLog workLog) {
+	public String update(
+			@PathVariable Long id,
+			@Valid @ModelAttribute("record") WorkLog workLog,
+			BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "record-edit";
+		}
+		
 		workLog.setId(id);
 		service.save(workLog);
+		
 		return "redirect:/records/" + id;
 	}
 	

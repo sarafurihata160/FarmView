@@ -6,7 +6,25 @@
 </head>
 <body>
 	<h1>天気予報</h1>
-	<p>ここにOpen-Meteoの天気予報を表示する予定です！</p>
+	<p>
+		気温：
+		<span th:text="${temperature}">--</span>℃
+	</p>
+	
+	<p>
+		湿度：
+		<span th:text="${humidity}">--</span>％
+	</p>
+	
+	<p>
+		降水量：
+		<span th:text="${precipitation}">--</span>mm
+	</p>
+	
+	<p>
+		風速：
+		<span th:text="${windSpeed}">--</span>km/h
+	</p>
 	
 	<a href="/">ホームに戻る</a>
 </body>

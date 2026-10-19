@@ -16,9 +16,5 @@ public class HomeController {
 		
 		return "index";
 	}
-	@GetMapping("/weather")
-	public String weather() {
-		return "weather";
-	}
 
 }

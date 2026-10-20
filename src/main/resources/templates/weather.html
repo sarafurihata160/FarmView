@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>天気予報｜FarmView</title>
+	<meta charset="UTF-8">
+	<title>天気予報｜FarmView</title>
+	
+	<style>
+		.weather-table {
+			border-collapse: collapse;
+		}
+		
+		.weather-table th,.weather-table td {
+			border: 1px solid #ccc;
+			padding: 12px 20px;
+		}
+		
+		.weather-table th {
+			background-color: #e8f5e9;
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
 	<h1>天気予報</h1>
@@ -33,11 +49,11 @@
 	
 	<h2>今後5時間の降水確率・風速</h2>
 	
-	<table border="1">
+	<table class="weather-table">
 		<tr>
-			<td>時刻</td>
-			<td>降水確率</td>
-			<td>風速</td>
+			<th>時刻</th>
+			<th>降水確率</th>
+			<th>風速</th>
 		</tr>
 		
 		<tr th:each="time, stat : ${forecastTimes}">

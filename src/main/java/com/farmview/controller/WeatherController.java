@@ -1,5 +1,10 @@
 package com.farmview.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,20 +48,64 @@ public class WeatherController {
 								.get("wind_speed_10m")
 								.asDouble();
 		
+		
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime currentHour = now.withMinute(0)
+										.withSecond(0)
+										.withNano(0);
+		
 		JsonNode hourly = json.get("hourly");
 		
+		List<String> forecastTimes = new ArrayList<>();
+		List<Integer> rainProbabilities = new ArrayList<>();
+		List<Double> windSpeeds = new ArrayList<>();
 		
-		for (int i = 0; i < 5; i++) {
+		int count = 0;
+		
+		for (int i = 0; i < hourly.get("time").size(); i++) {
 
 			String time = hourly.get("time").get(i).stringValue();
-		
-			int rainProbability = hourly.get("precipitation_probability")
-										.get(i)
-										.asInt();
-		
-			System.out.println(time + "降水確率：" + rainProbability + "％");
+			
+			LocalDateTime forecastTime = LocalDateTime.parse(time);
+			String displayTime = forecastTime.format(
+					DateTimeFormatter.ofPattern("HH:mm")
+					);
+			
+			if (forecastTime.equals(currentHour) || forecastTime.isAfter(currentHour)) {
+				
+				int rainProbability = hourly.get("precipitation_probability")
+											.get(i)
+											.asInt();
+				
+				double hourlyWindSpeed = hourly.get("wind_speed_10m")
+												.get(i)
+												.asDouble();
+				
+				forecastTimes.add(displayTime);
+				rainProbabilities.add(rainProbability);
+				windSpeeds.add(hourlyWindSpeed);
+				
+				System.out.println("現在の時間：" + time + "降水確率：" + rainProbability + "%");
+				
+				count++;
+				
+				if (count == 5) {
+					break;
+				}
+			}
 		}
 		
+		if(!rainProbabilities.isEmpty()) {
+			model.addAttribute("rainProbability", rainProbabilities.get(0));
+		}
+		
+		System.out.println("時刻リスト：" + forecastTimes);
+		System.out.println("降水確率リスト：" + rainProbabilities);
+		System.out.println("風速リスト：" + windSpeeds);
+		
+		model.addAttribute("forecastTimes", forecastTimes);
+		model.addAttribute("rainProbabilities", rainProbabilities);
+		model.addAttribute("windSpeeds", windSpeeds);
 		
 		model.addAttribute("temperature", temperature);
 		model.addAttribute("humidity", humidity);

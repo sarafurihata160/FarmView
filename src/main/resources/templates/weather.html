@@ -12,6 +12,11 @@
 	</p>
 	
 	<p>
+		降水確率：
+		<span th:text="${rainProbability}">--</span>％
+	</p>
+	
+	<p>
 		湿度：
 		<span th:text="${humidity}">--</span>％
 	</p>
@@ -25,6 +30,26 @@
 		風速：
 		<span th:text="${windSpeed}">--</span>km/h
 	</p>
+	
+	<h2>今後5時間の降水確率・風速</h2>
+	
+	<table border="1">
+		<tr>
+			<td>時刻</td>
+			<td>降水確率</td>
+			<td>風速</td>
+		</tr>
+		
+		<tr th:each="time, stat : ${forecastTimes}">
+			<td th:text="${time}"></td>
+			<td>
+				<span th:text="${rainProbabilities[stat.index]}"></span>%
+			</td>
+			<td>
+				<span th:text="${windSpeeds[stat.index]}"></span>km/h
+			</td>
+		</tr>
+	</table>
 	
 	<a href="/">ホームに戻る</a>
 </body>
